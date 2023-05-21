@@ -1,3 +1,3 @@
 rounds={}
 teams={}
-dates={}
+all_dates=[]
