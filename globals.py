@@ -1,0 +1,3 @@
+rounds={}
+teams={}
+dates=[]
