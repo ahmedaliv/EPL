@@ -38,8 +38,7 @@ def edit_standing(filter_method,limit):
     if(filter_method=='round'):
         for round_number in rounds:
             if(int(round_number)<=limit):
-                for date in rounds[round_number].dates:
-                    date.traverse_matches()
+                rounds[round_number].traverse_dates()
     elif(filter_method=='date'):
         for date in all_dates:
             if(date.date<=limit):
