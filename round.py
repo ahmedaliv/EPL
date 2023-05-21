@@ -12,3 +12,6 @@ class Round:
         else:
             new_date = Date(date, match_details)
             self.dates.append(new_date)
+    def traverse_dates(self):
+        for date in self.dates:
+            date.traverse_matches()

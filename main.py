@@ -2,8 +2,8 @@ import csv
 from round import Round
 from globals import *
 from team import Team
-from utils import *
 from date import Date
+from utils import *
 
 def add_teams(team1,team2):
     if team1 not in teams:
@@ -15,9 +15,8 @@ def read_data():
     with open('epl_results.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
         headers = next(reader, None)
-        print(headers)
         for row in reader:
-            round_number = row[0]
+            round_number = int(row[0])
             date   = convert_date(row[1])
             team1  = row[2]
             team2  = row[3]
@@ -38,20 +37,32 @@ def edit_standing(filter_method,limit):
     if(filter_method=='round'):
         for round_number in rounds:
             if(int(round_number)<=limit):
-                for date in rounds[round_number].dates:
-                    date.traverse_matches()
+                rounds[round_number].traverse_dates()
     elif(filter_method=='date'):
         for date in all_dates:
             if(date.date<=limit):
                 date.traverse_matches()    
 
-def print_standings():
-    for team in teams:
-        print(f'{team} : {teams[team].matches_won} : {teams[team].matches_drawn} : {teams[team].matches_lost} ');
-
-            
+def export_standings_csv(filename):
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Team', 'MatchPlayed', 'W', 'D', 'L', 'Goals For', 'Goals Against', 'Goal Diff', 'Points'])
+        
+        for team in teams:
+            writer.writerow([team,
+                             teams[team].matches_played,
+                             teams[team].matches_won,
+                             teams[team].matches_drawn,
+                             teams[team].matches_lost,
+                             teams[team].for_goals,
+                             teams[team].against_goals,
+                             teams[team].net_goals,
+                             teams[team].points])
 if(__name__ == '__main__'):
-    filter_method=int(input("Enter 1 for RoundNumber , 2 for Date: "))
+    filter_method = int(input("Please choose an option:\n"
+                          "1. Filter by Round Number\n"
+                          "2. Filter by Date\n"
+                          "Enter the corresponding number: "))    
     read_data()
     if(filter_method==1):
         round_number=int(input("Enter the round number: "))
@@ -59,9 +70,11 @@ if(__name__ == '__main__'):
     elif(filter_method==2):
         date=convert_date(input("Enter the date: "))
         edit_standing('date',date)
+        
     else:
         print("Invalid Input")
         exit()
-    print_standings()
-    
-
+    sorted_teams = sorted(teams.items(), key=lambda x: x[1].points, reverse=True)
+    teams=dict(sorted_teams)
+    export_standings_csv('standings.csv') 
+    print("Standings exported to standings.csv")  
