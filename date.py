@@ -11,7 +11,7 @@ class Date:
         return self.date
     def traverse_matches(self):
         for match in self.matches:
-            match.edit_standing()
+            match.play_match()
         
     
 

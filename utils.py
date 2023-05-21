@@ -11,6 +11,6 @@ def check_date(date_1,date_2):
     
 def convert_date(date_string):
     format_string = "%d/%m/%Y"
-    datetime_obj = datetime.strptime(date_string,format_string)
+    datetime_obj = datetime.strptime(date_string,format_string).date()
     return datetime_obj
 

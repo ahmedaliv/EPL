@@ -8,7 +8,7 @@ class Match:
         self.winner=winner
         #self.edit_standing()
 
-    def edit_standing(self):
+    def play_match(self):
         if(self.winner=='H'):
             teams[self.team1].matches_won+=1
             teams[self.team2].matches_lost+=1
@@ -18,10 +18,22 @@ class Match:
         else:
             teams[self.team1].matches_drawn+=1
             teams[self.team2].matches_drawn+=1
+        
+        self.edit_stats()
+        
+    def edit_stats(self):
+        teams[self.team1].matches_played+=1
+        teams[self.team2].matches_played+=1
         teams[self.team1].for_goals+=self.score1
         teams[self.team1].against_goals+=self.score2
         teams[self.team2].for_goals+=self.score2
         teams[self.team2].against_goals+=self.score1
+        teams[self.team1].calcNetGoals()
+        teams[self.team2].calcNetGoals()
+        teams[self.team1].calcPoints()
+        teams[self.team2].calcPoints()
+        
+        
     def __str__(self) -> str:
         return f"{self.team1} vs {self.team2} ({self.score1}-{self.score2})"
     
