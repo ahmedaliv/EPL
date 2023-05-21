@@ -2,8 +2,8 @@ import csv
 from round import Round
 from globals import *
 from team import Team
-from date import Date
 from utils import *
+from date import Date
 
 def add_teams(team1,team2):
     if team1 not in teams:
