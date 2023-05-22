@@ -1,5 +1,6 @@
 class Team:
-    def __init__(self,for_goals=0,against_goals=0):
+    def __init__(self,name,for_goals=0,against_goals=0):
+        self.name=name
         self.points=0
         self.net_goals=0
         self.for_goals=for_goals

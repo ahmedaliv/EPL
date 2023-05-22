@@ -4,12 +4,12 @@ from globals import *
 from team import Team
 from date import Date
 from utils import *
-
+from support import *
 def add_teams(team1,team2):
     if team1 not in teams:
-        teams[team1]=Team()
+        teams[team1]=Team(team1)
     if team2 not in teams:
-        teams[team2]=Team()
+        teams[team2]=Team(team2)
 
 def read_data():
     with open('epl_results.csv', 'r') as csv_file:
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         teams = dict(sorted_teams)
         export_standings_csv('standings.csv', filter_type, filter_value)
         print(f"Standings exported to standings_{filter_type}_{filter_value}.csv")
-
+        draw(teams)
         if try_again():
             continue
         else:
