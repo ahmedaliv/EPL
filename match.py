@@ -6,7 +6,6 @@ class Match:
         self.score1=int(score1)
         self.score2=int(score2)
         self.winner=winner
-        #self.edit_standing()
 
     def play_match(self):
         if(self.winner=='H'):
