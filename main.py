@@ -4,7 +4,7 @@ from globals import *
 from team import Team
 from date import Date
 from utils import *
-
+import pandas as pd
 def add_teams(team1,team2):
     if team1 not in teams:
         teams[team1]=Team()
@@ -101,6 +101,8 @@ if __name__ == '__main__':
         teams = dict(sorted_teams)
         export_standings_csv('standings.csv', filter_type, filter_value)
         print(f"Standings exported to standings_{filter_type}_{filter_value}.csv")
+        std=pd.read_csv(f'standings_{filter_type}_{filter_value}.csv')
+        print(std)
 
         if try_again():
             continue
