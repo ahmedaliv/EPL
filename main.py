@@ -12,7 +12,7 @@ def add_teams(team1,team2):
         teams[team2]=Team(team2)
 
 def read_data():
-    with open('EPL\epl_results.csv', 'r') as csv_file:
+    with open('epl_results.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
         headers = next(reader, None)
         for row in reader:
@@ -55,14 +55,25 @@ def try_again():
     user_input = input("Would you like to try again? (yes/no): ")
     return user_input.lower() == 'yes'
 
+def clear():
+    for team in teams.values():
+        team.points=0
+        team.net_goals=0
+        team.for_goals=0
+        team.against_goals=0
+        team.matches_won=0
+        team.matches_lost=0
+        team.matches_drawn=0
+        team.matches_played=0
+        
+                
 if __name__ == '__main__':
+    read_data()
     while True:
         filter_method = int(input("Please choose an option:\n"
                                   "1. Filter by Round Number\n"
                                   "2. Filter by Date\n"
                                   "Enter the corresponding number: "))
-        read_data()
-
         if filter_method == 1:
             round_number = int(input("Enter the round number: "))
             edit_standing('round', round_number)
@@ -80,7 +91,9 @@ if __name__ == '__main__':
         sorted_teams = sorted(teams.items(), key=lambda x: x[1].points, reverse=True)
         teams = dict(sorted_teams)
         draw(teams)
+        clear()
         if try_again():
             continue
         else:
             break
+

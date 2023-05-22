@@ -27,7 +27,11 @@ def draw(Teams):
             teams[team].against_goals,
             teams[team].net_goals,
             teams[team].points))
-
+    for column in tree['columns']:
+        tree.column(column, anchor='center')
+    
+    
     tree.pack(fill='both',expand=True)
+    
 
     root.mainloop()
