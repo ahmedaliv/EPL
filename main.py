@@ -12,7 +12,7 @@ def add_teams(team1,team2):
         teams[team2]=Team(team2)
 
 def read_data(): # O(M) where M is the number of matches
-    with open('epl_results.csv', 'r') as csv_file:
+    with open('EPL-main\epl_results.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
         headers = next(reader, None)
         for row in reader:
