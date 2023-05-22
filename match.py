@@ -17,7 +17,6 @@ class Match:
         else:
             teams[self.team1].matches_drawn+=1
             teams[self.team2].matches_drawn+=1
-        
         self.edit_stats()
         
     def edit_stats(self):

@@ -9,7 +9,7 @@ class Date:
         self.matches.append(Match(*match_details))
     def __str__(self) -> str:
         return self.date
-    def traverse_matches(self):
+    def traverse_matches(self): # O(M) where M is the number of matches
         for match in self.matches:
             match.play_match()
         

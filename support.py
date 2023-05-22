@@ -19,7 +19,7 @@ def draw(Teams):
     tree.heading('Goal Diff', text='Goal Diff',)
     tree.heading('Points', text='Points',)
     # print(Teams)
-    for team in Teams:
+    for team in Teams: # O(N) where N is the number of teams
         # print(team)
         tree.insert('', 'end', text=teams[team].name, values=(
             teams[team].matches_played, teams[team].matches_won, teams[team].matches_drawn, teams[team].matches_lost,
