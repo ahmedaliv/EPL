@@ -55,16 +55,9 @@ def try_again():
     user_input = input("Would you like to try again? (yes/no): ")
     return user_input.lower() == 'yes'
 
-def clear():
+def clear_all_teams():
     for team in teams.values():
-        team.points=0
-        team.net_goals=0
-        team.for_goals=0
-        team.against_goals=0
-        team.matches_won=0
-        team.matches_lost=0
-        team.matches_drawn=0
-        team.matches_played=0
+        team.clear_data()
         
                 
 if __name__ == '__main__':
@@ -88,10 +81,11 @@ if __name__ == '__main__':
             print("Invalid Input")
             if not try_again():
                 exit()
-        sorted_teams = sorted(teams.items(), key=lambda x: x[1].points, reverse=True)
+        sorted_teams = sorted(teams.items(), key=lambda x: x[1].score, reverse=True)
         teams = dict(sorted_teams)
         draw(teams)
-        clear()
+        clear_all_teams()
+        print("----------")
         if try_again():
             continue
         else:

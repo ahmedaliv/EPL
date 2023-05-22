@@ -28,7 +28,7 @@ def draw(Teams):
             teams[team].net_goals,
             teams[team].points))
     for column in tree['columns']:
-        tree.column(column, anchor='center')
+        tree.column(column, anchor='center',width=100)
     
     
     tree.pack(fill='both',expand=True)

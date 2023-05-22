@@ -32,6 +32,8 @@ class Match:
         teams[self.team2].calcNetGoals()
         teams[self.team1].calcPoints()
         teams[self.team2].calcPoints()
+        teams[self.team1].calScore()
+        teams[self.team2].calScore()
         
         
     def __str__(self) -> str:
