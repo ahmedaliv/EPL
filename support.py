@@ -1,22 +1,30 @@
 from tkinter import ttk
 import tkinter as tk
-from team import Team     
+from team import Team
+from globals import *
+
 def draw(Teams):
     root = tk.Tk()
     tree = ttk.Treeview(root)
-    columns=('Team name','MatchPlayed', 'W', 'D', 'L',
-            'Goals For', 'Goals Against', 'Goal Diff', 'Points')
-    tree = tk.ttk.Treeview(root, columns=columns, show='headings')
-    for col in columns:
-       tree.heading(col, text=col)
-    for team in Teams.keys():
-        tree.insert('', 'end', text= team , values=(
-            team.matches_played, team.matches_won, team.matches_drawn, team.matches_lost,
-            team.for_goals,
-            team.against_goals,
-            team.net_goals,
-            team.points))
+    tree.pack()
+    tree['columns'] = ('MatchPlayed', 'W', 'D', 'L',
+                       'Goals For', 'Goals Against', 'Goal Diff', 'Points')
+    tree.heading('#0', text='Name')
+    tree.heading('MatchPlayed', text='MatchPlayed')
+    tree.heading('W', text='W')
+    tree.heading('D', text='D')
+    tree.heading('L', text='L')
+    tree.heading('Goals For', text='Goals For')
+    tree.heading('Goals Against', text='Goals Against')
+    tree.heading('Goal Diff', text='Goal Diff')
+    tree.heading('Points', text='Points')
+    for team in Teams:
+        tree.insert('', 'end', text=teams[team].name, values=(
+            teams[team].matches_played, teams[team].matches_won, teams[team].matches_drawn, teams[team].matches_lost,
+            teams[team].for_goals,
+            teams[team].against_goals,
+            teams[team].net_goals,
+            teams[team].points))
 
-
-# Start the Tkinter event loop
+    
     root.mainloop()
