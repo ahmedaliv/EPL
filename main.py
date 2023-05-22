@@ -4,6 +4,7 @@ from globals import *
 from team import Team
 from date import Date
 from utils import *
+import numpy as np
 import pandas as pd
 def add_teams(team1,team2):
     if team1 not in teams:
@@ -102,6 +103,7 @@ if __name__ == '__main__':
         export_standings_csv('standings.csv', filter_type, filter_value)
         print(f"Standings exported to standings_{filter_type}_{filter_value}.csv")
         std=pd.read_csv(f'standings_{filter_type}_{filter_value}.csv')
+        std.index=np.arange(1, len(std) + 1)
         print(std)
 
         if try_again():
