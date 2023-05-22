@@ -7,9 +7,9 @@ from utils import *
 from support import *
 def add_teams(team1,team2):
     if team1 not in teams:
-        teams[team1]=Team()
+        teams[team1]=Team(team1)
     if team2 not in teams:
-        teams[team2]=Team()
+        teams[team2]=Team(team2)
 
 def read_data():
     with open('epl_results.csv', 'r') as csv_file:
