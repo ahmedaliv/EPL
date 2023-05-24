@@ -19,3 +19,4 @@ using graph representaion
 
 ### Algorithm Complexity: 
  #### O(M) Where M is the number of matches
+ #### O(M) because M >> D,R Where M is the number of matches and D,R is the number of dates , number of rounds respectively
